@@ -1,0 +1,102 @@
+[tool.poetry]
+name = "assertion"
+version = "0.1.0"
+description = ""
+authors = ["Rune Hansén Steinnes <rune.steinnes@renroros.no>"]
+readme = "README.md"
+packages = [{include = "assertion", from = "src"}]
+
+[tool.poetry.scripts]
+ca="assertion.create_signing_authority:create_signing_authority"
+pubcert="assertion.create_public_cert:create_public_certificate"
+fingerprint="assertion.fingerprint:print_fingerprint"
+assertion="assertion.create_assertion:print_authlib_payload"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+click = "^8.1.7"
+hexdump = "^3.3"
+python-dotenv = "^1.0.0"
+authlib = "^1.2.1"
+
+[tool.poetry.group.dev.dependencies]
+pynvim = "^0.4.3"
+mypy = "^0.991"
+black = "^22.12.0"
+importmagic = "^0.1.7"
+epc = "^0.0.5"
+ipython = "^8.8.0"
+ipython-genutils = "^0.2.0"
+isort = "^5.12.0"
+
+[tool.black]
+line-length = 120
+
+[tool.ruff]
+extend-select = ["A", "B", "C4", "D", "I", "ERA", "PLR", "SIM", "TCH"]
+ignore = ["D101","D102","D103","D107","D202","D400","D401","D406","D407","D417"]
+show-fixes = true
+line-length=120
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.pyright]
+typeshedPath = "/home/roderik/Documents/digital/typeshed"
+stubPath = "/home/roderik/Documents/digital/stubs"
+venvPath =  "."
+include = ["src"]
+exclude = [
+    "**/node_modules",
+    "**/__pycache__",
+    "**/@python2",
+    "stubs/enum34",
+    "stubs/futures",
+    "stubs/ipaddress"
+]
+ignore = []
+defineConstant = { DEBUG = true }
+
+reportMissingImports = true
+
+typeCheckingMode = "basic"
+strictListInference = true
+strictDictionaryInference = true
+strictParameterNoneValue = true
+reportFunctionMemberAccess = "error"
+reportMissingModuleSource = "none"
+reportMissingTypeStubs = "error"
+reportUnusedImport = "none"
+reportUnusedClass = "error"
+reportUnusedFunction = "error"
+reportUnusedVariable = "error"
+reportDuplicateImport = "error"
+reportOptionalSubscript = "error"
+reportOptionalMemberAccess = "error"
+reportOptionalCall = "error"
+reportOptionalIterable = "error"
+reportOptionalContextManager = "error"
+reportOptionalOperand = "error"
+reportUntypedFunctionDecorator = "error"
+reportUntypedClassDecorator = "error"
+reportUntypedBaseClass = "error"
+reportUntypedNamedTuple = "error"
+reportPrivateUsage = "error"
+reportConstantRedefinition = "error"
+reportIncompatibleMethodOverride = "error"
+reportIncompatibleVariableOverride = "error"
+reportInvalidStringEscapeSequence = "error"
+reportUnknownArgumentType = "error"
+reportUnknownLambdaType = "error"
+reportMissingTypeArgument = "error"
+reportUndefinedVariable = "error"
+reportUnboundVariable = "error"
+reportInvalidStubStatement = "error"
+reportInvalidTypeVarUse = "error"
+reportPropertyTypeMismatch = "error"
+reportSelfClsParameterName = "error"
+reportOverlappingOverload = "none"
+reportUnsupportedDunderAll = "none"
+pythonVersion = "3.11"
+pythonPlatform = "Linux"
