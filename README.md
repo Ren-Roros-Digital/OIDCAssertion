@@ -111,6 +111,6 @@ Be sure to never add this file to git.
 
 The same goes for your signing authority files (default ca.[crt | key | cer | ..]) and 
 your domains private keys. It's really no big deal if they end up in git.. it's just a pain to issue new
-sertificates for all servies.
+sertificates for all services.
 
 
