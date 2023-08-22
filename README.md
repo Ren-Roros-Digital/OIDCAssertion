@@ -100,7 +100,7 @@ Calling **assertion.fingerprint:get_fingerprint** will programatically get the f
 (assertion) $ poetry run assertion
 ```
 Will print the assertion to the commandline.
-Calling **assertion.create_assertion:get_get_authlib_payload** will programatically get the assertion 
+Calling **assertion.create_assertion:get_authlib_payload** will programatically get the assertion 
 
 To verify the assertion, you can use https://jwt.io
 
