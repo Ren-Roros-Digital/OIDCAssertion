@@ -17,6 +17,16 @@ Any moderately modern MacOS and / or linux installation should provide this out 
 ```sh
 $ curl -sSL https://install.python-poetry.org | python3 -
 ```
+Add poetry to your PATH
+
+- $HOME/.local/bin on Unix.
+- %APPDATA%\Python\Scripts on Windows.
+
+Alternatively, the full path to the poetry binary can always be used:
+
+- ~/Library/Application Support/pypoetry/venv/bin/poetry on MacOS.
+- ~/.local/share/pypoetry/venv/bin/poetry on Linux/Unix.
+- %APPDATA%\pypoetry\venv\Scripts\poetry on Windows.
 
 ### Clone the repo
 
