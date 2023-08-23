@@ -24,7 +24,7 @@ def calc_fingerprint(authname: str) -> str:
     return _hexfinger
 
 
-def get_fingerprint(authname: str):
+def get_fingerprint(authname: str) -> str:
     _hexfinger = calc_fingerprint(authname)
     return base64.b64encode(cast(bytes, restore(_hexfinger))).decode()
 

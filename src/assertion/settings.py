@@ -12,6 +12,7 @@ load_dotenv()
 
 __all__: list[str] = [
     "SETTINGS",
+    "SettingsProtocol",
 ]
 
 
@@ -47,7 +48,11 @@ class OIDC(BaseSettings):
     client_id: str = field(default="")
     grant_type: str = field(default="")
     scope: str = field(default="")
-    headers: dict[str, str] = field(default_factory=lambda: {"Content-type": "application/x-www-form-urlencoded"})
+    headers: dict[str, str] = field(
+        default_factory=lambda: {
+            "Content-type": "application/x-www-form-urlencoded",
+        }
+    )
 
 
 @dataclass(eq=False)
