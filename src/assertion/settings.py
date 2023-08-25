@@ -17,7 +17,7 @@ __all__: list[str] = [
 
 
 class OIDCProtocol(Protocol):
-    private_cert_prefix: str
+    fingerprint: Path
     public_key: Path
     token_url: str
     client_id: str
@@ -42,7 +42,7 @@ class BaseSettings:
 
 @dataclass(eq=False)
 class OIDC(BaseSettings):
-    private_cert_prefix: str = field(default="")
+    fingerprint: Path = field(default_factory=lambda: Path())
     public_key: Path = field(default_factory=lambda: Path())
     token_url: str = field(default="")
     client_id: str = field(default="")

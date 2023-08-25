@@ -1,4 +1,4 @@
-private_cert_prefix=ca
+fingerprint=ca/ca.crt
 public_key=<path>/<domain.com.key>
 client_id=
 grant_type="urn:ietf:params:oauth:grant-type:jwt-bearer"

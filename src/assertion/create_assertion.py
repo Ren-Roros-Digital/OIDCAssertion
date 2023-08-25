@@ -10,7 +10,7 @@ from assertion.settings import SETTINGS, SettingsProtocol
 
 
 def get_authlib_payload(settings: SettingsProtocol) -> jwt:
-    header = {"alg": "RS256", "x5t": get_fingerprint(settings.OIDC.private_cert_prefix)}
+    header = {"alg": "RS256", "x5t": get_fingerprint(settings.OIDC.fingerprint)}
     _timestamp = datetime.now()
     payload = {
         "sub": f"{settings.OIDC.client_id}",
