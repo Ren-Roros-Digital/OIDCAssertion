@@ -12,8 +12,9 @@ import click
 @click.option("--bits", default=2048, show_default=True)
 @click.option("--cipher", default="sha256", show_default=True)
 @click.option("--days", default=1095, show_default=True)
-@click.option("--country", default="NO", show_default=True)
-@click.option("--organization", default="Ren Røros Digital AS", show_default=True)
+@click.option("--country")
+@click.option("--organization")
+@click.option("--commonname")
 def create_public_certificate(
     domain: str,
     authname: str,
@@ -22,6 +23,7 @@ def create_public_certificate(
     days: str,
     country: str,
     organization: str,
+    commonname: str,
 ):
     certstore = Path(f"{domain}").stem
     Path(certstore).mkdir(parents=True, exist_ok=True)
@@ -45,7 +47,7 @@ def create_public_certificate(
             "req",
             "-new",
             "-subj",
-            f"/C={country}/O={organization}/CN={domain}",
+            f"/C={country}/O={organization}/CN={commonname}",
             "-key",
             f"{certstore}/{domain}.key",
             "-out",
@@ -70,6 +72,20 @@ def create_public_certificate(
             "-days",
             f"{days}",
             f"-{cipher}",
+        ],
+    )
+
+    call(
+        [
+            "openssl",
+            "pkcs12",
+            "-export",
+            "-inkey",
+            f"{certstore}/{domain}.key",
+            "-in",
+            f"{certstore}/{domain}.crt",
+            "-out",
+            f"{certstore}/{domain}.pfx",
         ],
     )
     Path(f"{certstore}/{domain}.csr").unlink()

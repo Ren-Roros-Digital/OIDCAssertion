@@ -13,9 +13,9 @@ import click
 @click.option("--bits", default=2048, show_default=True)
 @click.option("--cipher", default="sha256", show_default=True)
 @click.option("--days", default="1095", show_default=True)
-@click.option("--country", default="NO", show_default=True)
-@click.option("--organization", default="Ren Røros Digital AS", show_default=True)
-@click.option("--commonname", default="Development Certificate", show_default=True)
+@click.option("--country")
+@click.option("--organization")
+@click.option("--commonname")
 def create_signing_authority(
     authname: str,
     force: bool,
@@ -78,7 +78,7 @@ You will either have to locate the missing file, or recreate the signing authori
             "-new",
             "-nodes",
             "-subj",
-            f"/C={country}/O={organization} CA/CN={commonname}",
+            f"/C={country}/O={organization}/CN={commonname}",
             "-key",
             f"{authname}/{authname}.key",
             f"-{cipher}",
