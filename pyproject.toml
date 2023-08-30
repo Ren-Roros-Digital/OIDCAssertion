@@ -12,6 +12,7 @@ pubcert="assertion.create_public_cert:create_public_certificate"
 fingerprint="assertion.fingerprint:print_fingerprint"
 assertion="assertion.create_assertion:print_authlib_payload"
 token="assertion.token:print_token"
+decode="assertion.decode:decode"
 
 [tool.poetry.dependencies]
 python = "^3.11"
