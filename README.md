@@ -142,7 +142,7 @@ Options:
   --help               Show this message and exit.
 ```
 
-The command will create a folder *renroros* where the cert, key and ofx file for the domain will be placed.
+The command will create a folder *renroros* where the cert, key and pfx file for the domain will be placed.
 You will get a question to give the .pfx file a password.
 You may or may not do this. It's entirely up to you.
 
