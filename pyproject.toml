@@ -7,8 +7,7 @@ readme = "README.md"
 packages = [{include = "assertion", from = "src"}]
 
 [tool.poetry.scripts]
-ca="assertion.create_signing_authority:create_signing_authority"
-pubcert="assertion.create_public_cert:create_public_certificate"
+newcert="assertion.create_key_and_cert:create_public_certificate"
 fingerprint="assertion.fingerprint:print_fingerprint"
 assertion="assertion.create_assertion:print_authlib_payload"
 token="assertion.token:print_token"

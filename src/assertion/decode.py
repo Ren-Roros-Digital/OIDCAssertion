@@ -8,7 +8,7 @@ import click
 
 
 @click.command()
-@click.option("--cert", default="ca/ca.crt", show_default=True)
+@click.option("--cert")
 def decode(cert: Path):
     call(
         [

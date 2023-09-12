@@ -1,5 +1,6 @@
 """Get final authentication token."""
 
+import json
 from pathlib import Path
 
 import click
@@ -36,12 +37,14 @@ def get_token(settings: SettingsProtocol) -> requests.Response:
 @click.option("--statuscode/--no-statuscode", default=True, show_default=True)
 @click.option("--print-header", is_flag=True, show_default=True)
 @click.option("--print-payload", is_flag=True, show_default=True)
+@click.option("--print-token-string", is_flag=True, show_default=True)
 def print_token(
     cert: Path | None = None,
     client_id: str | None = None,
     statuscode: bool = True,
     print_header: bool = False,
     print_payload: bool = False,
+    print_token_string: bool = False,
 ):
     """Print the response from a token request given fingerprint, assertion and scope.
 
@@ -63,4 +66,7 @@ def print_token(
 
     res = get_token(SETTINGS)
     if statuscode:
-        print(f"{res.status_code} - {res.content!r}")
+        if print_token_string:
+            print(f"{json.loads(res.content)['access_token']}")
+        else:
+            print(f"{res.status_code} - {res.content!r}")

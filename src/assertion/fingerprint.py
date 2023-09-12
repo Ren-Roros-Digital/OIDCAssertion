@@ -31,8 +31,8 @@ def get_fingerprint(fingerprint: Path) -> str:
 
 
 @click.command()
-@click.option("--cert", default="ca/ca.crt", show_default=True)
-def print_fingerprint(cert: str) -> None:
+@click.option("--cert")
+def print_fingerprint(cert: Path) -> None:
     """Print the fingerprint of the given <path/to/certificate.crt> ."""
     _hexfinger = calc_fingerprint(Path(cert))
     print(base64.b64encode(cast(bytes, restore(_hexfinger))).decode())
