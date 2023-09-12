@@ -46,9 +46,10 @@ def print_token(
     print_payload: bool = False,
     print_token_string: bool = False,
 ):
-    """Print the response from a token request given fingerprint, assertion and scope.
-
-    This method uses the .env file.
+    """Print the response from a token request.
+    
+    The default behaviour is that the command reads the .env file.
+    Setting the options will override options from .env file.
     """
 
     if cert is not None:
