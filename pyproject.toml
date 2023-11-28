@@ -14,22 +14,20 @@ token="assertion.token:print_token"
 decode="assertion.decode:decode"
 
 [tool.poetry.dependencies]
-python = "^3.11"
+python = "^3.12"
 click = "^8.1.7"
 hexdump = "^3.3"
 python-dotenv = "^1.0.0"
 authlib = "^1.2.1"
 requests = "^2.31.0"
+beartype = "^0.16.4"
+pyright = "^1.1.337"
 
 [tool.poetry.group.dev.dependencies]
 pynvim = "^0.4.3"
 mypy = "^0.991"
-black = "^22.12.0"
-importmagic = "^0.1.7"
-epc = "^0.0.5"
 ipython = "^8.8.0"
 ipython-genutils = "^0.2.0"
-isort = "^5.12.0"
 types-requests = "^2.31.0.2"
 
 [tool.black]
@@ -101,5 +99,5 @@ reportPropertyTypeMismatch = "error"
 reportSelfClsParameterName = "error"
 reportOverlappingOverload = "none"
 reportUnsupportedDunderAll = "none"
-pythonVersion = "3.11"
+pythonVersion = "3.12"
 pythonPlatform = "Linux"

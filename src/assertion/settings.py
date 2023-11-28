@@ -4,9 +4,10 @@ from __future__ import annotations
 import os
 from dataclasses import dataclass, field
 from pathlib import Path
-from typing import Protocol
 
 from dotenv import load_dotenv
+
+from assertion.protocols import OIDCProtocol, SettingsProtocol
 
 load_dotenv()
 
@@ -14,21 +15,6 @@ __all__: list[str] = [
     "SETTINGS",
     "SettingsProtocol",
 ]
-
-
-class OIDCProtocol(Protocol):
-    fingerprint: Path
-    public_key: Path
-    token_url: str
-    client_id: str
-    grant_type: str
-    scope: str
-    headers: dict[str, str]
-
-
-class SettingsProtocol(Protocol):
-    base_dir: Path
-    OIDC: OIDCProtocol
 
 
 @dataclass(eq=False)

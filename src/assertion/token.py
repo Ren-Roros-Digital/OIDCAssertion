@@ -2,9 +2,11 @@
 
 import json
 from pathlib import Path
+from typing import TypedDict
 
 import click
 import requests
+from beartype.typing import Unpack
 
 from assertion.create_assertion import get_authlib_payload
 from assertion.settings import SETTINGS, SettingsProtocol
@@ -31,6 +33,15 @@ def get_token(settings: SettingsProtocol) -> requests.Response:
     return response
 
 
+class TokenKwargs(TypedDict):
+    cert: Path
+    client_id: str
+    statuscode: bool
+    print_header: bool
+    print_payload: bool
+    print_token_string: bool
+
+
 @click.command()
 @click.option("--cert", default=None, show_default=True)
 @click.option("--client-id", default=None, show_default=True)
@@ -39,35 +50,34 @@ def get_token(settings: SettingsProtocol) -> requests.Response:
 @click.option("--print-payload", is_flag=True, show_default=True)
 @click.option("--print-token-string", is_flag=True, show_default=True)
 def print_token(
-    cert: Path | None = None,
-    client_id: str | None = None,
-    statuscode: bool = True,
-    print_header: bool = False,
-    print_payload: bool = False,
-    print_token_string: bool = False,
+    **kwargs: Unpack[TokenKwargs],
 ):
     """Print the response from a token request.
-    
+
     The default behaviour is that the command reads the .env file.
     Setting the options will override options from .env file.
     """
 
-    if cert is not None:
-        SETTINGS.OIDC.fingerprint = cert
+    if kwargs["cert"] is not None:
+        SETTINGS.OIDC.fingerprint = kwargs["cert"]
 
-    if client_id is not None:
-        SETTINGS.OIDC.client_id = client_id
+    if kwargs["client_id"] is not None:
+        SETTINGS.OIDC.client_id = kwargs["client_id"]
 
-    if print_header or print_payload:
+    if kwargs["print_header"] or kwargs["print_payload"]:
         _payload, _header = build_headers_and_payload(SETTINGS)
-        if print_header:
+        if kwargs["print_header"]:
             print(f"{_header!r}")
-        if print_payload:
+        if kwargs["print_payload"]:
             print(f"{_payload!r}")
 
     res = get_token(SETTINGS)
-    if statuscode:
-        if print_token_string:
+    if kwargs["statuscode"]:
+        if kwargs["print_token_string"]:
             print(f"{json.loads(res.content)['access_token']}")
         else:
             print(f"{res.status_code} - {res.content!r}")
+
+
+if __name__ == "__main__":
+    print_token()
